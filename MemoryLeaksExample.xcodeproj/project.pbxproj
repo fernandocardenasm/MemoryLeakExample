@@ -10,6 +10,7 @@
 		A4671F1125EE4CC100DD9A21 /* MemoryLeaksExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4671F0725EE4CC100DD9A21 /* MemoryLeaksExample.framework */; };
 		A4671F1625EE4CC100DD9A21 /* MemoryLeaksExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4671F1525EE4CC100DD9A21 /* MemoryLeaksExampleTests.swift */; };
 		A4671F1825EE4CC100DD9A21 /* MemoryLeaksExample.h in Headers */ = {isa = PBXBuildFile; fileRef = A4671F0A25EE4CC100DD9A21 /* MemoryLeaksExample.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4671F2425EE4CD600DD9A21 /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4671F2325EE4CD600DD9A21 /* RemoteLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		A4671F1025EE4CC100DD9A21 /* MemoryLeaksExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemoryLeaksExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4671F1525EE4CC100DD9A21 /* MemoryLeaksExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryLeaksExampleTests.swift; sourceTree = "<group>"; };
 		A4671F1725EE4CC100DD9A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4671F2325EE4CD600DD9A21 /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				A4671F0A25EE4CC100DD9A21 /* MemoryLeaksExample.h */,
 				A4671F0B25EE4CC100DD9A21 /* Info.plist */,
+				A4671F2325EE4CD600DD9A21 /* RemoteLoader.swift */,
 			);
 			path = MemoryLeaksExample;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				TargetAttributes = {
 					A4671F0625EE4CC100DD9A21 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					A4671F0F25EE4CC100DD9A21 = {
 						CreatedOnToolsVersion = 12.4;
@@ -194,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4671F2425EE4CD600DD9A21 /* RemoteLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +345,7 @@
 		A4671F1C25EE4CC100DD9A21 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -357,6 +363,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cardenas.fernando.MemoryLeaksExample;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -364,6 +371,7 @@
 		A4671F1D25EE4CC100DD9A21 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -388,6 +396,7 @@
 		A4671F1F25EE4CC100DD9A21 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SAR2G9PZXH;
@@ -406,6 +415,7 @@
 		A4671F2025EE4CC100DD9A21 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SAR2G9PZXH;

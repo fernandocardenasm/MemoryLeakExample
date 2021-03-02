@@ -6,28 +6,53 @@
 //
 
 import XCTest
-@testable import MemoryLeaksExample
+import MemoryLeaksExample
 
 class MemoryLeaksExampleTests: XCTestCase {
+    
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let client = ClientSpy()
+        var sut: RemoteLoader? = RemoteLoader(client: client)
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+         var loadCalled = false
+        sut?.load {
+            loadCalled = true
+        }
+
+        sut = nil
+        client.receivedCompletion?()
+
+        XCTAssertFalse(loadCalled)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func test_load() {
+        let sut = makeSUT()
+        sut.load {}
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func makeSUT(file: StaticString = #file, line: UInt = #line) -> RemoteLoader {
+        let client = ClientSpy()
+        let sut = RemoteLoader(client: client)
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(client, file: file, line: line)
+        
+        return sut
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated. Potential Memory leak.", file: file, line: line)
         }
     }
+}
 
+class ClientSpy: HTTPClient {
+    
+    static let shared = ClientSpy()
+    
+    var receivedCompletion: (() -> Void)?
+    func get(from url: URL, completion: @escaping () -> Void) {
+        receivedCompletion = completion
+    }
 }
